@@ -1,0 +1,9 @@
+type LIB
+status Completed
+lock on
+title multislice13C
+exp multislice13C
+time null
+macro xmrtpar
+data multislice13C_05
+element action

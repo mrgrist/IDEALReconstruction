@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE template>
+<template>
+    <action type="LIB" id="n001" status="Completed" lock="on" title="scout" exp="scout" time="null" macro="xmrtpar" data="scout_01" />
+    <action type="LIB" id="n002" status="Completed" lock="on" title="spuls" exp="spuls" time="null" macro="xmrtpar" data="spuls_01" />
+    <action type="LIB" id="n003" status="Completed" lock="on" title="spuls" exp="spuls" time="null" macro="xmrtpar" data="spuls_02" />
+    <action type="LIB" id="n004" status="Completed" lock="on" title="gems" exp="gems" time="null" macro="xmrtpar" data="gems_01" />
+    <action type="LIB" id="n005" status="Completed" lock="on" title="gems" exp="gems" time="null" macro="xmrtpar" data="gems_02" />
+    <action type="LIB" id="n006" status="Completed" lock="on" title="gems" exp="gems" time="null" macro="xmrtpar" data="gems_03" />
+    <action type="LIB" id="n007" status="Completed" lock="on" title="gems" exp="gems" time="null" macro="xmrtpar" data="gems_04" />
+    <action type="LIB" id="n008" status="Completed" lock="on" title="gems" exp="gems" time="null" macro="xmrtpar" data="gems_05" />
+    <action type="LIB" id="n010" status="Completed" lock="on" title="mtssfp" exp="mtssfp" time="null" macro="xmrtpar" data="mtssfp_01" />
+    <action type="LIB" id="n011" status="Completed" lock="on" title="mtssfp" exp="mtssfp" time="null" macro="xmrtpar" data="mtssfp_02" />
+    <action type="LIB" id="n012" status="Completed" lock="on" title="mtssfp" exp="mtssfp" time="null" macro="xmrtpar" data="mtssfp_03" />
+    <action type="LIB" id="n013" status="Completed" lock="on" title="spuls" exp="spuls" time="null" macro="xmrtpar" data="spuls_03" />
+    <action type="LIB" id="n014" status="Completed" lock="on" title="mtssfp" exp="mtssfp" time="null" macro="xmrtpar" data="mtssfp_04" />
+    <action type="LIB" id="n015" status="Completed" lock="on" title="mtssfp" exp="mtssfp" time="null" macro="xmrtpar" data="mtssfp_05" />
+    <action type="LIB" id="n009" status="Customized" lock="off" title="tssfp" exp="tssfp" time="6 sec" macro="sqexp(&apos;tssfp&apos;)" data="" />
+</template>

@@ -1,0 +1,9 @@
+type LIB
+status Customized
+lock off
+title mtssfp
+exp mtssfp
+time null
+macro xmrtpar
+data null
+element action

@@ -1,0 +1,8 @@
+type LIB
+status Customized
+title gems
+exp gems
+time 2.6s
+macro xmrtpar
+data 
+lock off

@@ -1,0 +1,8 @@
+type LIB
+status Customized
+title spuls
+exp spuls
+time 0:01
+macro xmrtpar
+data 
+lock off

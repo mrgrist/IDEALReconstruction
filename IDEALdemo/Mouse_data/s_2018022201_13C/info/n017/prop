@@ -1,0 +1,9 @@
+type LIB
+status Customized
+lock off
+title multislice13C
+exp multislice13C
+time 11.5s
+macro xmrtpar
+data null
+element action

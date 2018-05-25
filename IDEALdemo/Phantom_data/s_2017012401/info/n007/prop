@@ -1,0 +1,8 @@
+type LIB
+status Completed
+title gems
+exp gems
+time null
+macro xmrtpar
+data gems_04
+lock on

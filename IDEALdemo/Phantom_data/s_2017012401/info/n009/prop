@@ -1,0 +1,8 @@
+type LIB
+status Customized
+title tssfp
+exp tssfp
+lock off
+time 6 sec
+macro sqexp('tssfp')
+data 
