@@ -37,8 +37,8 @@ for x = 1:nx
             
             for numtime = 1:ntime
                 
-                [Rho_Real_New,Rho_Imag_New,DeltaPhi] =...
-                 IDEAL_FirstIteration...
+                [Rho_Real_New,Rho_Imag_New,DeltaPhi,InitialDeconv, cnj, dnj]...
+                 = IDEAL_FirstIteration...
                  (fidne,te,ne,interTE,delay2,frequencies);
                 
                 %Put a check in here to discard voxels with too big an error
@@ -46,12 +46,13 @@ for x = 1:nx
                     
                     [B0_Final, Complex_Rho_Final] =...
                     IDEAL_LoopingIterations...
-                    (Rho_Real_New, Rho_Imag_New, DeltaPhi);
+                    (Rho_Real_New, Rho_Imag_New, DeltaPhi, InitialDeconv,...
+                    cnj, dnj);
                     
                     B0Map = B0_Final;
                     
                     Images(nx,ny,nz,:,ntime) = ...
-                    Complex_Rho_Final;
+                        Complex_Rho_Final;
                     
                 else
                     
