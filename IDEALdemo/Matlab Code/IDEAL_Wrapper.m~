@@ -1,0 +1,46 @@
+function IDEAL_Wrapper
+
+%This is a wrapper function to run multi-slice, multi-phase cartesian IDEAL
+%reconstruction. 
+
+
+%% James Grist and Christian Mariager 25/05/2018
+
+%% Load in data function
+
+
+%% Standard reconstruction functions (EPI, phasing  etc)
+
+%% IDEAL reconstruction section
+
+%Pre-allocate memory for deconvolved images, and B0 map
+Images = zeros(nx,ny,nz,nmetabolites,ntime);
+
+B0Map = zeros(nx,ny,nz,ntime);
+
+Tolerance = 30; %If initial B0 map is greater than this, will not iterate.
+
+%Run this over every voxel, slice, and phase
+
+[B0_Final,Rho_Real_New,Rho_Imag_New] = IDEAL_FirstIteration...
+    (fidne,te,ne,interTE,delay2,frequencies);
+
+%Put a check in here to discard voxels with too big an error
+if abs(B0_Final) < Tolerance
+
+[] = IDEAL_LoopingIterations();
+
+else
+    
+    B0Map = 0;
+    
+    Images(nx,ny,nz,nmetabolites,ntime) = 0;
+    
+end
+%Now store final data
+%% DICOM saving
+
+
+
+
+end

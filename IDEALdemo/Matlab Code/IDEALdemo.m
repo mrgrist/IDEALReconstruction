@@ -8,12 +8,12 @@
 % Change directory to script folder
 tmp = matlab.desktop.editor.getActive;
 cd(fileparts(tmp.Filename));
-
+cd ..
 % Clear workspace
 clear all; close all; clc;
 
 %%% import and use phantom data set %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-DataPath = 'Phantom_data\s_2017012401\';
+DataPath = 'Phantom_data/s_2017012401/'; %Add check for mac or windows here
 PrintAllFigs = 1; % 1=static data/one frame, 2=dynamic data/time series
 HannFilter = 0; % use a Hanning filter on the k-space data before processing? 1=use filter, 0=do not use filter
 experimentPath = DataPath;
@@ -45,7 +45,7 @@ C13names = {'Bicarbonate','Urea','Acetate'};     % names
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Sort image data and flip every other k-space line
-mtssfpFiles = dir([experimentPath '\' C13mtssfp '*.fid']);
+mtssfpFiles = dir(strcat([experimentPath '/' C13mtssfp '*.fid']));
 counter = 1;
 for k=mtssfpindex(1):mtssfpindex(2)        
     mtssfpFilename = mtssfpFiles(k).name(1:end-4);
