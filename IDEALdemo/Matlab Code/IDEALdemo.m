@@ -13,35 +13,35 @@ cd ..
 clear all; close all; clc;
 
 %%% import and use phantom data set %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-DataPath = 'Phantom_data/s_2017012401/'; %Add check for mac or windows here
-PrintAllFigs = 1; % 1=static data/one frame, 2=dynamic data/time series
-HannFilter = 0; % use a Hanning filter on the k-space data before processing? 1=use filter, 0=do not use filter
-experimentPath = DataPath;
-C13mtssfp = 'mtssfp_';
-delay1 =   0.000000;    % [s] - correction for IDEAl using odd/even echoes
-delay2 =   0.000000;    % [s] - correction for IDEAl using all echoes
-mtssfpindex = [1 1];    % Specify first and last mtssfp data set to use for mtssfp IDEAL (index is number of files in folder)
-manual_slopeval=-0.3;  % set a manual value for phase correction
-offsetval = 0.0.*pi;    % [radians] - Linear phase correction
-interTE = 0.000608;     % [s] - delta TE
-frequencies= [-1.8404    0.0346    0.2788].*1e3; % acquired from spectral data
-C13names = {'Bicarbonate','Urea','Acetate'};     % names
+% DataPath = 'Phantom_data/s_2017012401/'; %Add check for mac or windows here
+% PrintAllFigs = 1; % 1=static data/one frame, 2=dynamic data/time series
+% HannFilter = 0; % use a Hanning filter on the k-space data before processing? 1=use filter, 0=do not use filter
+% experimentPath = DataPath;
+% C13mtssfp = 'mtssfp_';
+% delay1 =   0.000000;    % [s] - correction for IDEAl using odd/even echoes
+% delay2 =   0.000000;    % [s] - correction for IDEAl using all echoes
+% mtssfpindex = [1 1];    % Specify first and last mtssfp data set to use for mtssfp IDEAL (index is number of files in folder)
+% manual_slopeval=-0.3;  % set a manual value for phase correction
+% offsetval = 0.0.*pi;    % [radians] - Linear phase correction
+% interTE = 0.000608;     % [s] - delta TE
+% frequencies= [-1.8404    0.0346    0.2788].*1e3; % acquired from spectral data
+% C13names = {'Bicarbonate','Urea','Acetate'};     % names
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% import and use in-vivo data set %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DataPath = 'Mouse_data\s_2018022201_13C\';
-% frequencies=fliplr([-0.889   -0.503   -0.229    0.342].*1e3);% 0.5 0.8].*1e3;
-% mtssfpindex = [12 20];    % Specify first and last mtssfp data set to use for mtssfp IDEAL (index is number of files in folder)
-% PrintAllFigs = 2; % 1=static data / one frame, 2=dynamic data/time series
-% HannFilter =1;
-% experimentPath = DataPath;
-% C13mtssfp = 'mtssfp_';
-% delay1 =   0.000000; % [s] - correction for IDEAl using odd/even echoes
-% delay2 =   0.000000; % [s] - correction for IDEAl using all echoes
-% manual_slopeval=-0.3;
-% offsetval = 0.*pi;      % [radians] - Linear phase correction
-% interTE = 0.000708;     % [s] - delta TE
-% C13names = {'Lactate','Pyruvate-hy','Alanine','Pyruvate'};%,'Urea','Bicarbonate'};
+DataPath = 'Mouse_data/s_2018022201_13C/';
+frequencies=fliplr([-0.889   -0.503   -0.229    0.342].*1e3);% 0.5 0.8].*1e3;
+mtssfpindex = [12 20];    % Specify first and last mtssfp data set to use for mtssfp IDEAL (index is number of files in folder)
+PrintAllFigs = 2; % 1=static data / one frame, 2=dynamic data/time series
+HannFilter =1;
+experimentPath = DataPath;
+C13mtssfp = 'mtssfp_';
+delay1 =   0.000000; % [s] - correction for IDEAl using odd/even echoes
+delay2 =   0.000000; % [s] - correction for IDEAl using all echoes
+manual_slopeval=-0.3;
+offsetval = 0.*pi;      % [radians] - Linear phase correction
+interTE = 0.000708;     % [s] - delta TE
+C13names = {'Lactate','Pyruvate-hy','Alanine','Pyruvate'};%,'Urea','Bicarbonate'};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Sort image data and flip every other k-space line
@@ -155,11 +155,11 @@ for k=mtssfpindex(1):mtssfpindex(2)
      xlabel('kx samples')
      title('Corrected echo profiles')
      %pause(2)
-     clf(fig2)
+     %clf(fig2)
      
      % use corrected fid's
      fidne(:,:,:,counter)=fidneCorr;
-     
+     pause(0.5)
      counter = counter +1;
 end
 
@@ -169,6 +169,7 @@ matrix = 64; % recon matrix
 allmap_img_display=[];
 allmap_img_display_initial=[];
 counter = 1;
+tic
 %frequencies = [10000 11000 12000 13000 14000 15000];
 for k=mtssfpindex(1):mtssfpindex(2) % frame loop
     clear A
@@ -398,7 +399,7 @@ for k=mtssfpindex(1):mtssfpindex(2) % frame loop
 
     counter=counter+1; % repeat for next timeframe
 end % frame loop
-
+toc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% plot figures %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if PrintAllFigs ==1
 figure(6)
@@ -449,7 +450,7 @@ elseif PrintAllFigs ==2
     
 % make images of in-vivo data
 figure(6)
-subplot(1,4,[1])
+subplot(1,3,[1])
 imshow(abs(allmap_img_display),[0 10000])
 C13names = fliplr(C13names);
 for i=1:size(frequencies,2)
@@ -462,7 +463,7 @@ end
 colormap(jet)
 xlabel('IDEAL maps (after iterative code)') 
 
-subplot(1,4,[2])
+subplot(1,3,[2])
 imshow(abs(allmap_img_display_initial),[0 10000])
 C13names = C13names;
 for i=1:size(frequencies,2)
@@ -475,7 +476,7 @@ end
 colormap(jet)
 xlabel('initial IDEAL maps (no iterative component)') 
 
-subplot(1,4,[3])
+subplot(1,3,[3])
 fieldmap = [];
 for k=1:size(B0_Final,3)
     fieldmap = [fieldmap;B0_Final(:,:,k)];
@@ -485,13 +486,13 @@ colormap(jet)
 colorbar
 xlabel('Final field maps [Hz]') 
 
-subplot(1,4,[4])
-plot(freq,intensity)
-hold on;
-plot(freq(loc),intensity(loc),'*r')
-ylim([0 1.1])
-title('Sum of spectra (IDEAL frequencies)')
-xlabel('frequency [Hz]')
+% subplot(1,4,[4])
+% plot(freq,intensity)
+% hold on;
+% plot(freq(loc),intensity(loc),'*r')
+% ylim([0 1.1])
+% title('Sum of spectra (IDEAL frequencies)')
+% xlabel('frequency [Hz]')
 
 set(gcf,'Position',get(0,'Screensize')); % large figure
 end

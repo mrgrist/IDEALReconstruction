@@ -9,6 +9,10 @@ To run:
 
 
 
-16/05/18
+29/05/18
 
 Initial speed test: 
+
+Phantom data = 6 seconds
+
+In vivo data = 10.8 seconds
